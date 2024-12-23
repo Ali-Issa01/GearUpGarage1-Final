@@ -1,0 +1,234 @@
+/* Our Services Title */
+#section-title {
+    font-size: 3rem; /* Make the title bigger */
+    font-weight: bold; /* Bold text */
+    color: hsl(1, 91%, 37%); /* Red color */
+    margin-bottom: 10px; /* Add some spacing below the title */
+    text-align: center; /* Ensure the title is centered */
+  }
+  
+  /* Subtitle */
+  .section-subtitle {
+    font-size: 30px; /* Smaller font size */
+    font-weight: normal; /* Normal font weight */
+    color: #000; /* Black color */
+    margin-top: 5px; /* Adjust spacing above the subtitle */
+    text-align: center; /* Ensure the subtitle is centered */
+  }
+  
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .btn-danger {
+    background-color: #e63946;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+  }
+  
+  .btn-danger:hover {
+    background-color: #d32f2f;
+  }
+
+  /* Header Styles */
+.header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: hsl(222, 44%, 14%); /* Solid dark background for consistency */
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  
+  .header .logo img {
+    width: 250px;
+    padding-right: 50px;
+    justify-content: left;
+  }
+  
+  .navbar {
+    display: flex;
+    gap: 40px;
+    justify-content: flex-start;
+    flex-grow: 1;
+  }
+  
+  .navbar-link {
+    text-transform: uppercase;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: hsl(0, 0%, 100%);
+    transition: color 0.2s;
+  }
+  
+  .navbar-link.active {
+    color: hsl(1, 91%, 37%);
+    font-weight: bold;
+  }
+  
+  .navbar-link:hover {
+    color: hsl(1, 91%, 37%);
+  }
+  
+  .btn-primary {
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: hsl(1, 91%, 37%);
+    color: hsl(0, 0%, 100%);
+    font-family: 'Chakra Petch', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: hsl(222, 50%, 11%);
+    transform: translateY(-3px);
+  }
+  
+  /* Dropdown Styles */
+  #profileDropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #profileDropdown i,
+  #profileDropdown svg,
+  #profileDropdown .material-symbols-rounded {
+    font-size: 60px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  /* Adjust dropdown icon */
+#profileDropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profileDropdown i, #profileDropdown svg, #profileDropdown .material-symbols-rounded {
+  font-size: 60px; /* Large icon */
+  color: white; /* White color */
+  cursor: pointer;
+  margin-bottom: 5px; /* Space between icon and dropdown */
+}
+
+
+
+
+.dropdown-menu {
+  margin-top: 10px; /* Slightly move dropdown below the icon */
+  min-width: 150px; /* Define a reasonable dropdown width */
+}
+
+/* Enlarge the dropdown menu */
+.dropdown-menu {
+  padding: 10px; /* Add padding to the dropdown */
+  min-width: 180px; /* Adjust the width */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for a modern look */
+  font-size: 16px; /* Increase text size */
+}
+
+/* Style dropdown items */
+.dropdown-item {
+  padding: 10px 15px; /* Add spacing inside items */
+  color: #333; /* Darker text color */
+  font-weight: 500; /* Slightly bold */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect on dropdown items */
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #000; /* Black text on hover */
+}
+
+/* Style the "Logout" button specifically */
+.dropdown-item.text-danger {
+  color: #e63946; /* Red text */
+  font-weight: bold; /* Make it stand out */
+}
+
+.dropdown-item.text-danger:hover {
+  background-color: #ffe5e5; /* Soft red background on hover */
+  color: #d32f2f; /* Darker red text on hover */
+}
+  /* Custom Modal Styles */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  font-family: 'Chakra Petch', sans-serif;
+  color: hsl(1, 91%, 37%);
+  font-weight: bold;
+}
+
+.modal-footer .btn {
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+.modal-footer .btn-secondary {
+  
+  border-radius: 30px;
+  padding: 10px 20px;
+  width : 200px
+}
+.modal-dialog {
+  max-width: 800px; 
+  width: 90%; /* Optional: makes it responsive */
+}
+
+#uniqueProfileDropdown i {
+  font-size: 55px; /* Adjust icon size */
+  color: white; /* Ensure consistent color */
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  min-width: 200px; /* Adjust the dropdown width if needed */
+}
+
+#successModal .modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+#successModal .modal-body {
+  font-size: 1.2rem;
+  color: #555;
+}
+

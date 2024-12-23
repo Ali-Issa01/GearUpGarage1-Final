@@ -1,0 +1,153 @@
+
+/* Header Styles */
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background-color: hsl(222, 44%, 14%); /* Solid dark background for consistency */
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.header .logo img {
+  width: 250px;
+  padding-right: 50px;
+  justify-content: left;
+}
+
+.navbar {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.navbar-link {
+  text-transform: uppercase;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: hsl(0, 0%, 100%);
+  transition: color 0.2s;
+}
+
+.navbar-link.active {
+  color: hsl(1, 91%, 37%);
+  font-weight: bold;
+}
+
+.navbar-link:hover {
+  color: hsl(1, 91%, 37%);
+}
+
+.btn-primary {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: hsl(1, 91%, 37%);
+  color: hsl(0, 0%, 100%);
+  font-family: 'Chakra Petch', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: hsl(222, 50%, 11%);
+  transform: translateY(-3px);
+}
+
+.admin-content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  position: relative; /* Allows shifting */
+  left: -150px;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  width: 800px
+}
+
+.card h3 {
+  background-color: hsl(1, 91%, 37%);
+  color: white;
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+}
+
+.card-body {
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.selected {
+  background-color: hsl(1, 91%, 85%); /* Light red */
+  color: black;
+}
+
+/* Pending status in orange */
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+
+/* Completed status in green */
+.status-completed {
+  color: green;
+  font-weight: bold;
+}
+
+/* Red Danger Button */
+#addServiceBtn {
+  margin-top: 20px;
+  width: 150px;
+}
+
+/* Modal Styling */
+.modal-header {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-body {
+  padding: 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f4f4f4;
+}
+
+table tbody tr:hover {
+  background-color: #f9f9f9;
+}

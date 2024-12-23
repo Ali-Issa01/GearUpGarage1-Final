@@ -1,0 +1,475 @@
+/* Reset Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Global reset for text-decoration */
+a, 
+button, 
+.navbar-link, 
+.btn-primary, 
+.btn-secondary {
+  text-decoration: none; /* Remove underline from all links and buttons */
+}
+body {
+  font-family: 'Mulish', sans-serif;
+  background-color: hsl(222, 44%, 14%);
+  color: hsl(0, 0%, 100%);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Header */
+.header {
+  position:relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background-color:transparent;
+  z-index: 10;
+}
+
+.header .logo img {
+  width: 250px;
+  padding-right: 50px;
+  justify-content: left;
+}
+
+.navbar {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-start;
+  flex-grow: 1; 
+}
+
+.navbar-link {
+  text-transform: uppercase;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: hsl(0, 0%, 100%);
+  transition: color 0.2s;
+}
+
+.navbar-link.active {
+    color: hsl(1, 91%, 37%);
+    font-weight: bold;
+  }
+  
+  .navbar-link:hover {
+    color: hsl(1, 91%, 37%);
+  }
+.btn-primary {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: hsl(1, 91%, 37%);
+  color: hsl(0, 0%, 100%);
+  font-family: 'Chakra Petch', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: hsl(222, 50%, 11%);
+  transform: translateY(-3px);
+}
+
+/* Adjust dropdown icon */
+#profileDropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profileDropdown i, #profileDropdown svg, #profileDropdown .material-symbols-rounded {
+  font-size: 60px; /* Large icon */
+  color: white; /* White color */
+  cursor: pointer;
+  margin-bottom: 5px; /* Space between icon and dropdown */
+}
+
+
+
+
+.dropdown-menu {
+  margin-top: 10px; /* Slightly move dropdown below the icon */
+  min-width: 150px; /* Define a reasonable dropdown width */
+}
+
+/* Enlarge the dropdown menu */
+.dropdown-menu {
+  padding: 10px; /* Add padding to the dropdown */
+  min-width: 180px; /* Adjust the width */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for a modern look */
+  font-size: 16px; /* Increase text size */
+}
+
+/* Style dropdown items */
+.dropdown-item {
+  padding: 10px 15px; /* Add spacing inside items */
+  color: #333; /* Darker text color */
+  font-weight: 500; /* Slightly bold */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect on dropdown items */
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #000; /* Black text on hover */
+}
+
+/* Style the "Logout" button specifically */
+.dropdown-item.text-danger {
+  color: #e63946; /* Red text */
+  font-weight: bold; /* Make it stand out */
+}
+
+.dropdown-item.text-danger:hover {
+  background-color: #ffe5e5; /* Soft red background on hover */
+  color: #d32f2f; /* Darker red text on hover */
+}
+
+
+
+
+/* Hero Section */
+.hero {
+    height: 100vh; /* Full viewport height */
+    background-image:url('./assets/images/hero-bg.jpg');
+    background-size: cover; /* Cover the entire section */
+    background-position: center;
+    padding-bottom: 120px 0; /* Add more vertical spacing for a spacious layout */
+    display: flex;
+    margin-top: -200px;
+    align-items: center; /* Center vertically */
+    justify-content:flex-start; /* Distribute content evenly */
+  }
+  
+  /* Hero Content */
+  .hero-content {
+    max-width: 1050px; /* Increase the content width */
+    margin-right: 120px; /* Add left margin for balance */
+  }
+  
+  .section-subtitle {
+    text-transform: uppercase;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 30px; /* Larger subtitle */
+    font-weight: 600;
+    color: hsl(1, 53%, 75%);
+    margin-bottom: 20px;
+  }
+  
+  .hero-title {
+    font-family: 'Chakra Petch', sans-serif;
+    max-width: 1050px;
+    width: 800px;
+    font-size: 80px; 
+    font-weight: 700;
+    color: hsl(0, 0%, 100%);
+    line-height: 1.2;
+    margin-bottom: 30px;
+  }
+  
+  .hero-text {
+    font-size: 30px; /* Larger body text */
+    color: hsl(0, 0%, 90%);
+    margin-bottom: 40px;
+  }
+  
+  /* Buttons */
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    width: 320px;
+    gap: 12px;
+    padding: 18px 36px; /* Bigger button padding */
+    background-color: hsl(1, 91%, 37%);
+    color: hsl(0, 0%, 100%);
+    font-family: 'Chakra Petch', sans-serif;
+    text-transform: uppercase;
+    font-size: 30px; /* Larger button text */
+    font-weight: 600;
+    border: none;
+    border-radius: 50px; /* Rounded edges */
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: hsl(222, 50%, 11%);
+    transform: translateY(-3px);
+  }
+  
+  /* Hero Banner Image */
+  .hero-banner img {
+    width: 900px; /* Increase car image size */
+    padding: 10px;
+
+    
+  }
+  
+  
+  /* Keyframes for Moving Animation */
+  @keyframes move-anim {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-15px); /* Subtle bounce effect */
+    }
+  }
+  
+  /* General Layout for Sections */
+  .container {
+    max-width: 1600px; /* Allow the layout to take more space horizontally */
+    margin: 0 auto;
+    padding: 0 50px; /* Add more padding for a spacious feel */
+  }
+
+
+ /* About Us Section */
+.about-us {
+  
+  background-color: hsl(222, 44%, 14%); /* Navy blue background */
+  color: hsl(0, 0%, 100%); /* White text */
+  
+  padding: 200px; /* Increased padding for a taller section */
+  height : 700px
+  
+}
+
+.about-us .section-title {
+  color: hsl(1, 91%, 37%); /* Red title */
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 80px; /* Larger font size */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.about-us .section-description {
+  font-family: 'Mulish', sans-serif;
+  font-size: 20px; /* Slightly larger font size */
+  text-align: center;
+  margin-bottom: 60px;
+}
+.about-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Increased gap between blocks */
+  flex-wrap: wrap;
+}
+
+.stat-block {
+  background-color: hsl(222, 50%, 20%); /* Slightly lighter navy for blocks */
+  color: hsl(0, 0%, 100%);
+  border-radius: 8px;
+  text-align: center;
+  padding: 40px 20px; /* Increased padding for taller blocks */
+  width: 240px; /* Wider blocks */
+  transition: transform 0.3s ease-in-out;
+}
+
+.stat-block h3 {
+  font-size: 2.5rem; /* Larger numbers */
+  font-family: 'Chakra Petch', sans-serif;
+  color: hsl(0, 0%, 100%); /* White for numbers */
+}
+
+.stat-block p {
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px; /* Larger font size for description */
+}
+
+.stat-block:hover {
+  transform: translateY(-5px); /* Hover effect for better interactivity */
+  background-color: hsl(222, 50%, 25%); /* Slightly lighter navy on hover */
+}
+
+ /* Services Section */
+.service {
+    padding: 100px 100px; /* Add padding to the section */
+    text-align: center; /* Center-align the text */
+    height: 90vh;
+    align-items: center;
+  }
+  
+  .service.has-bg-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Section Header (Title and Button) */
+  .section-header {
+    padding-left: 50px;
+    align-items: center;
+    margin-bottom: 40px; /* Space below header */
+    margin-right: 20px;
+  }
+  
+  .section-header .section-title {
+    font-size: 40px; /* Adjust title size */
+    font-family: 'Chakra Petch', sans-serif;
+    color: hsl(0, 0%, 20%);
+    text-transform: uppercase;
+    padding-bottom: 30px;
+  }
+  
+  .section-header .btn-primary {
+    font-size: 20px;
+    padding: 12px 24px;
+    text-transform: uppercase;
+    background-color: hsl(1, 91%, 37%);
+    color: hsl(0, 0%, 100%);
+    border-radius: 50px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Services Grid */
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Space between cards */
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    align-items: stretch;
+   
+  }
+  .service-container{
+    display: flex;
+    align-items:center;
+    justify-content:space-around;
+  }
+  .service-grid li:nth-child(4),
+  .service-grid li:nth-child(5) {
+    grid-column: span 1; /* Make the last row span 2 columns */
+  }
+  
+  /* Service Cards */
+  .service-card {
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Stack the card content vertically */
+    align-items: center; /* Horizontally center the content */
+    justify-content: center; /* Vertically center the content */
+    text-align: center; 
+    min-height: 400px; 
+    background-color: hsl(0, 0%, 100%);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+  }
+  
+  .service-card img {
+    width: 80px;
+    margin-bottom: 15px;
+  }
+  
+  .service-card .card-title {
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: hsl(0, 0%, 20%);
+  }
+  
+  .service-card .card-text {
+    font-size: 20px;
+    color: hsl(0, 0%, 50%);
+    margin-bottom: 20px;
+  }
+  
+  /* Service Link */
+  .btn-link {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: hsl(1, 91%, 37%);
+    text-decoration: none;
+  }
+  
+  .btn-link:hover {
+    color: hsl(1, 53%, 75%);
+  }
+  
+
+
+/* Footer Styles */
+.footer {
+    background-color: hsl(222, 44%, 14%); /* Navy blue background */
+    color: hsl(0, 0%, 100%); /* White text for contrast */
+    padding: 20px 0; /* Vertical padding */
+    text-align: center; /* Center-align all text */
+    
+  }
+  
+  .footer .container {
+    max-width: 1200px; /* Constrain content width */
+    margin: 0 auto; /* Center the footer content */
+    padding: 0 20px; /* Add side padding for smaller screens */
+  }
+  
+  .footer-text {
+    font-size: 20px;
+    margin-bottom: 10px; /* Space below copyright */
+  }
+  
+  .footer-details {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 5px; /* Space between items */
+  }
+  
+  .footer-item {
+    font-size: 20px;
+    color: hsl(0, 0%, 90%); /* Light gray text */
+  }
+  
+  .footer-label {
+    font-weight: bold; /* Emphasize labels */
+  }
+  
+  .footer a {
+    color: hsl(1, 53%, 75%); /* Accent color for links */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .footer a:hover {
+    color: hsl(1, 91%, 37%); /* Change color on hover */
+  }
+  
+  
+
+
+
+
+  /*Service page*/
+
+  

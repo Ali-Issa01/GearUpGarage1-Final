@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Mulish&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Main Content -->
+        <div class="content">
+            <header class="header">
+                <h1>My Profile</h1>
+                <a href="./index.html" class="nav-link-btn">Home</a>
+                    <a href="" class="nav-link-btn">Car Inventory</a>
+                    <a href="./services.html" class="nav-link-btn">Services</a>
+                    <a href="./index.html" onclick="logout()" id="logoutBtn" class="logout-btn"><div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+                        <div class="text">Logout</div></a>
+
+                <div id="username" class="username" style="margin-left: 30px;"></div>
+            </header>
+
+            <div class="container">
+                <h2 class="section-title">My Appointments</h2>
+                <p class="section-subtitle">Below are your booked appointments. You can book a new one or cancel existing appointments.</p>
+
+                <!-- Appointment List -->
+                <div id="appointmentsList" class="appointments">
+                    <!-- Appointments will be dynamically inserted here -->
+                </div>
+
+                <!-- Book Appointment Button -->
+                <div class="text-center mt-4">
+                    <a href="services.html" style="text-decoration: none;"><button class="nav-link-btn">Book Appointment</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const user = JSON.parse(localStorage.getItem('user'));
+        // Function to fetch user details and display username
+        function loadUserDetails() {
+            console.log(user);
+            
+            if (!user) {
+                alert('You are not logged in!');
+                window.location.href = 'login.html';
+                return;
+            }
+            document.getElementById('username').textContent = `Welcome, ${user.username} `;
+        }
+
+        // Function to fetch appointments for the logged-in user
+        async function fetchAppointments() {
+            console.log("user: ", user);
+            
+            if (!user) {
+                console.error('User not found in localStorage');
+                return;
+            }
+
+            const user_id = user.userId;
+            console.log(user_id);
+            
+
+            try {
+                console.log("Sending data");
+                
+                const response = await fetch(`http://localhost:5000/api/appointments/user?user_id=${user_id}`);
+                const appointments = await response.json();
+
+                console.log("Response is: ", appointments);
+                
+                const appointmentsList = document.getElementById('appointmentsList');
+                appointmentsList.innerHTML = ''; // Clear existing appointments
+
+                if (appointments.error) {
+                    appointmentsList.innerHTML = `<p>${appointments.error}</p>`;
+                    return;
+                }
+
+                appointments.forEach(appointment => {
+                    const appointmentDiv = document.createElement('div');
+                    appointmentDiv.className = 'appointment card mb-3 p-3';
+                    appointmentDiv.innerHTML = `
+                        <div class="card-body">
+                            <h5 class="card-title">Service: ${appointment.service_type}</h5>
+                            <p class="card-text">
+                                <strong>Car:</strong> ${appointment.model} (${appointment.year})<br>
+                                <strong>Date:</strong> ${appointment.appointment_date}<br>
+                                <strong>Time Slot:</strong> ${appointment.time_slot}<br>
+                                <strong>Garage:</strong> ${appointment.garage}<br>
+                                <strong>Status:</strong> ${appointment.status}
+                            </p>
+                            <button class="btn btn-danger" onclick="cancelAppointment('${appointment.appointment_id}', this)">Cancel Appointment</button>
+                        </div>
+                    `;
+                    appointmentsList.appendChild(appointmentDiv);
+                });
+            } catch (error) {
+                console.error('Error fetching appointments:', error);
+                document.getElementById('appointmentsList').innerHTML = '<p>Error loading appointments.</p>';
+            }
+        }
+
+
+
+        // Function to cancel an appointment
+        async function cancelAppointment(appointmentId, button) {
+            if (!confirm('Are you sure you want to cancel this appointment?')) {
+                return; // Exit if the user cancels the confirmation
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/appointments/${appointmentId}`, {
+                    method: 'DELETE',
+                });
+
+                if (response.ok) {
+                    button.closest('.appointment').remove();
+                    alert('Appointment cancelled successfully.');
+                } else {
+                    alert('Failed to cancel appointment. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error cancelling appointment:', error);
+                alert('An error occurred while cancelling the appointment.');
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+
+        // Load user details and appointments when the page is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserDetails();
+            fetchAppointments();
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.removeItem('user');
+        window.location.reload();
+      });
+    </script>
+</body>
+</html>

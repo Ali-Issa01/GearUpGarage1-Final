@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  
+ <!-- Bootstrap CSS -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+ <!-- Custom CSS -->
+ <link rel="stylesheet" href="assets/css/style.css">
+
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Mulish&display=swap"
+   rel="stylesheet">
+
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   
+
+   <!-- Material Icons -->
+   <link rel="stylesheet"
+   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,600,0,0" />
+
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="admin.css">
+
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+   <!-- Bootstrap JS -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+          <a href="index.html" class="logo">
+            <img src="./assets/images/logo.png" alt="Autofix Logo">
+          </a>
+          <nav class="navbar">
+            <a href="admin.html" class="navbar-link">Admin panel</a>
+          </nav>
+          <div id="authButtons">
+            <div class="dropdown">
+                <a href="#" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-user-circle" style="font-size: 55px; color: white; cursor: pointer;"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                  <li><a class="dropdown-item" href="profile.html">View Profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><button class="dropdown-item text-danger" id="logoutBtn">Logout</button></li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </header>
+
+
+      <main class="admin-content">
+        <div class="grid-container">
+          <!-- Card 1: Appointments -->
+          <div class="card">
+            <h3>Appointments</h3>
+            <div class="card-body">
+              <table id="appointmentsTable">
+                <thead>
+                  <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Service</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Car</th>
+                <th>Status</th>
+                
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+    
+          <!-- Card 2: Users -->
+          <div class="card">
+            <h3>Users</h3>
+            <div class="card-body">
+              <table id="usersTable">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+    
+          <!-- Card 3: Customer Cars -->
+          <div class="card">
+            <h3>Customer Cars</h3>
+            <div class="card-body">
+              <table id="customerCar">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Condition</th>
+                    <th>Owner</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+    
+          <!-- Card 4: Owned Cars -->
+          <div class="card">
+            <h3>Owned Cars</h3>
+            <div class="card-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+    
+          <!-- Card 5: Services -->
+          <div class="card">
+            <h3>Services</h3>
+            <div class="card-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be dynamically populated -->
+                </tbody>
+              </table>
+            <!-- Add Service Button -->
+    <div class="add-service-button-container">
+        <button id="addServiceBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+          Add Service
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal for Adding Service -->
+  <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addServiceModalLabel">Add New Service</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addServiceForm">
+            <div class="mb-3">
+              <label for="serviceName" class="form-label">Service Name</label>
+              <input type="text" class="form-control" id="serviceName" placeholder="Enter service name" required>
+            </div>
+            <div class="mb-3">
+              <label for="servicePrice" class="form-label">Price</label>
+              <input type="number" class="form-control" id="servicePrice" placeholder="Enter service price" required>
+            </div>
+            <div class="mb-3">
+              <label for="serviceDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Enter service description" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger">Add Service</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+          <!-- Card 6: Contracts -->
+          <div class="card">
+            <h3>Contracts</h3>
+            <div class="card-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+    
+          <!-- Card 7: Car Reservations -->
+          <div class="card">
+            <h3>Car Reservations</h3>
+            <div class="card-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Car</th>
+                    <th>Reservation Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+
+  
+
+      <script>
+        const user = JSON.parse(localStorage.getItem('user'));
+         document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+         })
+
+//------------------------------------------------------------------
+         // Getting the Appointment information
+         async function fetchappointment(){
+          
+                const response = await fetch('http://127.0.0.1:5000/api/appointments-admin');
+
+                if(!response.ok){
+                    
+                    throw new Error('Failed to fetch appointment informations');
+                }
+
+                const appointment = await response.json();
+
+                console.log('appointment fetched:', appointment);
+                const tablebody = document.getElementById("appointmentsTable");
+
+
+                appointment.forEach((appointment) => {
+                const row = document.createElement('tr');
+                
+                // Format the current date (DD-MM-YYYY)
+                const currentDate = new Date();
+                    const formattedCurrentDate = currentDate.toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                    }); // Example: 21-12-2024
+
+                    // Format the appointment date (DD-MM-YYYY)
+                    const rawAppointmentDate = new Date(appointment.appointment_date);
+                    const formattedAppointmentDate = rawAppointmentDate.toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                    }); // Example: 17-12-2024
+
+                    // Extract and parse appointment time (HH:MM AM/PM)
+                    const appointmentStartTime = appointment.time_slot.split(' - ')[0]; // Example: "06:00 PM"
+                    const appointmentEndTime = appointment.time_slot.split(' - ')[1];   // Example: "06:30 PM"
+
+                    // Convert current time to the same format (HH:MM AM/PM)
+                    const currentTime = currentDate.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                    }); // Example: "05:45 PM"
+
+                    // Determine status
+                    let status;
+                    if (formattedCurrentDate > formattedAppointmentDate) {
+                        status = 'Completed'; // The date has passed
+                    } else if (formattedCurrentDate === formattedAppointmentDate && currentTime >= appointmentEndTime) {
+                        status = 'Completed'; // Same date, but the time has passed
+                    } else {
+                        status = 'Pending'; // Appointment is in the future
+                    }
+
+                    const statusColor = status === 'Completed' ? 'green' : 'orange';
+
+                    // Update the appointment status in the object
+                appointment.status = status;
+                // Generate the button HTML
+                const buttonLabel = status === 'Completed' ? 'Remove' : 'Cancel';
+                const buttonClass = status === 'Completed' ? 'btn-danger remove-button' : 'btn-warning cancel-button';
+
+                row.innerHTML= `
+                <td>${appointment.appointment_id}</td>
+                <td>${formattedAppointmentDate}</td>
+                <td>${appointment.time_slot}</td>
+                <td>${appointment.service_type}</td>
+                <td>${appointment.customer_name}</td>
+                <td>${appointment.customer_phone}</td>
+                <td>${appointment.car_model} (${appointment.car_year})</td>
+                <td style="color: ${statusColor}; font-weight: bold;">${appointment.status}</td>
+                <td>
+                    <button class="btn ${buttonClass} btn-sm action-button data-id="${appointment.appointment_id}">${buttonLabel}</button>
+                </td>
+                `
+                tablebody.appendChild(row);
+                });
+         }
+
+                            // Call the function on page load
+                            document.addEventListener('DOMContentLoaded', () => {
+                    const tableBody = document.getElementById('appointmentsTable');
+
+                    // Fetch appointments and populate the table
+                    fetchappointment();
+
+                    // Event delegation for Remove and Cancel buttons
+                    tableBody.addEventListener('click', async (event) => {
+                        const target = event.target;
+
+                        // Check if the clicked element is a Remove or Cancel button
+                        if (target.classList.contains('remove-button') || target.classList.contains('cancel-button')) {
+                            const row = target.closest('tr');
+                            const appointmentId = row.querySelector('td').textContent.trim();
+                            console.log('Appointment ID:', appointmentId);
+
+                                 try {
+                                const response = await fetch('http://127.0.0.1:5000/api/appointments-admin/remove', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ appointment_id: appointmentId }),
+                                });
+
+                                if (response.ok) {
+                                    // Remove row from the table
+                                row.remove();
+                                alert('Appointment removed successfully.');
+                                }
+
+                                
+                            } catch (error) {
+                                console.error('Error removing appointment:', error);
+                                alert('An error occurred while processing the request.');
+                            }
+                        }
+                    });
+                    });
+
+
+
+
+
+        document.querySelectorAll('.action-button').forEach(button => {
+    button.addEventListener('click', async (event) => {
+      const appointmentId = event.target.getAttribute('data-id');
+      const action = event.target.innerText.toLowerCase(); // 'remove' or 'cancel'
+
+      try {
+        const response = await fetch(`/api/appointments/${appointmentId}`, {
+          method: 'DELETE',
+        });
+
+        if (response.ok) {
+          event.target.closest('tr').remove();
+          alert(`Appointment ${action}ed successfully.`);
+        } else {
+          alert(`Failed to ${action} appointment.`);
+        }
+      } catch (error) {
+        console.error(`Error ${action}ing appointment:`, error);
+        alert(`An error occurred while ${action}ing the appointment.`);
+      }
+    });
+  });
+    
+
+
+
+        //Getting Users Information
+         async function fetchUsers(){
+            const response = await fetch('http://localhost:5000/api/users-admin');
+           
+            const user = await response.json();
+  
+           
+            
+            const userTable = document.getElementById('usersTable');
+
+            user.forEach((user)=>{
+
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                <td>${user.user_id} </td>
+                <td>${user.name} </td>
+                <td>${user.email} </td>
+                <td>${user.phone} </td>
+                `
+                userTable.appendChild(row);
+            })
+         }
+
+            //calling the function
+
+        document.addEventListener('DOMContentLoaded', fetchUsers);
+
+
+         //Getting Customer Car  Information
+         async function fetchcustomerCar(){
+            const response = await fetch('http://localhost:5000/api/customerCar-admin');
+           
+            const customerCar = await response.json();
+            
+            
+            const customerCarTable = document.getElementById('customerCar');
+
+            customerCar.forEach((car)=>{
+
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                <td>${car.car_id} </td>
+                <td>${car.model} </td>
+                <td>${car.model_year} </td>
+                <td>${car.car_condition} </td>
+                <td>${car.owner} </td>
+                `
+                customerCarTable.appendChild(row);
+            })
+         }
+
+            //calling the function
+
+        document.addEventListener('DOMContentLoaded', fetchcustomerCar);
+
+         
+
+
+
+
+        //Adding a service 
+
+                document.getElementById('addServiceForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const serviceName = document.getElementById('serviceName').value.trim();
+            const servicePrice = parseFloat(document.getElementById('servicePrice').value);
+            const serviceDescription = document.getElementById('serviceDescription').value.trim();
+
+            // Validate input
+            if (!serviceName || isNaN(servicePrice) || !serviceDescription) {
+                alert('Please fill out all fields correctly.');
+                return;
+            }
+
+            // Send POST request to backend
+            try {
+                const response = await fetch('/api/services', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: serviceName,
+                        price: servicePrice,
+                        description: serviceDescription,
+                    }),
+                });
+
+                if (response.ok) {
+                    alert('Service added successfully!');
+                    location.reload(); // Reload the page to reflect changes
+                } else {
+                    alert('Failed to add service. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error adding service:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+
+
+      </script>
+</body>
+
+</html>

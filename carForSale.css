@@ -1,0 +1,164 @@
+/* General Styles */
+body {
+  font-family: 'Mulish', sans-serif;
+  background-color: #fff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h2.section-title {
+  color: #d32f2f;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center; /* Center the title */
+  margin-top: 2rem; /* Add some spacing above the title */
+}
+
+/* Header Styles */
+.header {
+  background-color: #001f3f; /* Navy blue */
+  padding: 1rem 0;
+  color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo img {
+  max-height: 50px;
+}
+
+.header .navbar .navbar-link {
+  color: #fff;
+  font-weight: 600;
+  margin: 0 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header .navbar .navbar-link:hover,
+.header .navbar .navbar-link.active {
+  color: #ffcccb;
+}
+
+/* .header .btn-primary {
+  background-color: #fff;
+  color: #001f3f; Navy blue
+  border: 2px solid #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+} */
+/* 
+.header .btn-primary:hover {
+  background-color: #ffcccb;
+  color: #fff;
+  border-color: #ffcccb;
+} */
+
+/* Card Styles */
+#car-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Center the cards */
+  margin-top: 2rem; /* Add spacing between the title and cards */
+}
+
+.card {
+  border: 1px solid #d32f2f;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px; /* Fixed width for consistent card size */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  color: #d32f2f;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: #555;
+}
+
+.btn-primary {
+  background-color: #d32f2f;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #b71c1c;
+}
+
+/* Modal Styles */
+.modal-header {
+  background-color: #d32f2f;
+  color: #fff;
+  border-bottom: 2px solid #b71c1c;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+.modal-body {
+  background-color: #fff;
+  color: #333;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.submit-btn {
+  background-color: #d32f2f;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* Form Input Styles */
+.form-control,
+.form-select {
+  border: 1px solid #d32f2f;
+  border-radius: 4px;
+  color: #333;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #b71c1c;
+  box-shadow: 0 0 0 0.2rem rgba(211, 47, 47, 0.25);
+}
+
+/* Footer Styles (if needed) */
+footer {
+  background-color: #001f3f; /* Navy blue */
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+footer a {
+  color: #ffcccb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
+}

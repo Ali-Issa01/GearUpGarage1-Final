@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - GearUpGarage</title>
+  <link rel="stylesheet" href="signup.css">
+  <style>
+    /* Add styles for the message box */
+    .message-box {
+      display: none; /* Hidden by default */
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      color: white;
+      text-align: center;
+    }
+    .message-box.success {
+      background-color: #4caf50; /* Green for success */
+    }
+    .message-box.error {
+      background-color: #f44336; /* Red for error */
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <a href="index.html" style="text-decoration: none;">
+      <h1>GearUpGarage</h1>
+    </a>
+    <h3>Join us today!</h3>
+    <div id="messageBox" class="message-box"></div>
+
+    <form id ="signupForm" action="">
+      <!-- Username -->
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" 
+             placeholder="Enter your Username" required>
+
+      <!-- Email -->
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" 
+             placeholder="Enter your Email" required>
+
+      <label for="confirm-password">Phone Number</label>
+      <input type="password" id="phone-number" name="phone-number" 
+                           placeholder="Phone number" required> 
+      <!-- Password -->
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" 
+             placeholder="Enter your Password" required>
+
+      <!-- Confirm Password -->
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" 
+             placeholder="Re-enter your Password" required>
+
+            
+
+      <div class="wrap">
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+
+    <p>Already have an account? 
+      <a href="login.html" style="text-decoration: none;">Log in</a>
+    </p>
+  </div>
+
+
+
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    const messageBox = document.getElementById('messageBox');
+
+    // Function to show messages in the message box
+    function showMessage(message, type) {
+      messageBox.textContent = message; // Set the message text
+      messageBox.className = `message-box ${type}`; // Add the success or error class
+      messageBox.style.display = 'block'; // Show the message box
+
+      // Automatically hide the message after 5 seconds
+      setTimeout(() => {
+        messageBox.style.display = 'none';
+      }, 5000);
+    }
+
+    // Add an event listener for form submission
+    signupForm.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent the form from submitting immediately
+
+      // Get form values
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const phoneNumber = document.getElementById('phone-number').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      // Check if passwords match
+      if (password !== confirmPassword) {
+        showMessage('Passwords do not match. Please try again.', 'error');
+        return;
+      }
+
+       // Validate name contains only letters
+       const nameRegex = /^[A-Za-z\s]+$/;
+        if (!nameRegex.test(username)) {
+            showMessage('Name must contain only letters.', 'error');
+            return;
+        }
+
+
+        // Validate email structure
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('Please enter a valid email address.', 'error');
+            return;
+        }
+
+        // Validate password length
+        if (password.length <= 6) {
+            showMessage('Password must be greater than 6 characters.', 'error');
+            return;
+        }
+
+      try {
+        // Send data to the backend
+        const response = await fetch('http://localhost:5000/api/signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: username,
+            email: email,
+            phone_number: phoneNumber, // Sent as phone_number
+            password: password,
+        }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          showMessage(result.message, 'success'); // Display success message
+          signupForm.reset();                    // Reset the form after successful submission
+        } else {
+          showMessage(`Error: ${result.error}`, 'error'); // Display error message
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showMessage('An error occurred. Please try again later.', 'error');
+      }
+    });
+  </script>
+</body>
+
+</html>
